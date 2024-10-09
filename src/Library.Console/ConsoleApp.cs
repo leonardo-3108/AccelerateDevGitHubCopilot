@@ -24,6 +24,7 @@ public class ConsoleApp
         _patronRepository = patronRepository;
         _loanRepository = loanRepository;
         _jsonData = jsonData;
+        _loanService = loanService;
         _patronService = patronService;
     }
 
@@ -206,14 +207,14 @@ public class ConsoleApp
         {
             if (selectedLoanNumber >= 1 && selectedLoanNumber <= selectedPatronDetails.Loans.Count())
             {
-            var selectedLoan = selectedPatronDetails.Loans.ElementAt(selectedLoanNumber - 1);
-            selectedLoanDetails = selectedPatronDetails.Loans.Where(l => l.Id == selectedLoan.Id).Single();
-            return ConsoleState.LoanDetails;
+                var selectedLoan = selectedPatronDetails.Loans.ElementAt(selectedLoanNumber - 1);
+                selectedLoanDetails = selectedPatronDetails.Loans.Where(l => l.Id == selectedLoan.Id).Single();
+                return ConsoleState.LoanDetails;
             }
             else
             {
-            Console.WriteLine("Invalid book loan number. Please try again.");
-            return ConsoleState.PatronDetails;
+                Console.WriteLine("Invalid book loan number. Please try again.");
+                return ConsoleState.PatronDetails;
             }
         }
         else if (action == CommonActions.Quit)
